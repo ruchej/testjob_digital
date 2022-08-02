@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 
-class Indicators(models.Model):
+class Indicator(models.Model):
 
     class Meta:
         verbose_name = "Показатель"

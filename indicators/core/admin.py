@@ -1,7 +1,7 @@
 from django.contrib import admin
-from core.models import Indicators
+from core.models import Indicator
 
 
-@admin.register(Indicators)
-class IndicatorsAdmin(admin.ModelAdmin):
+@admin.register(Indicator)
+class IndicatorAdmin(admin.ModelAdmin):
     pass

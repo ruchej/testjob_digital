@@ -33,7 +33,8 @@ user_2 / user_2
                 User.objects.create_user(
                     username=name,
                     email=f'{name}@example.loc',
-                    password=name
+                    password=name,
+                    is_active=True
                 )
 
     def handle(self, *args, **options):
