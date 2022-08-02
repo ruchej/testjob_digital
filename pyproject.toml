@@ -14,3 +14,14 @@ djangorestframework = "^3.13.1"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+pythonVersion = "3.10.5"
+pythonPlatform = "Linux"
+venv = "testjob-digital-yVDOslDC-py3.10"
+venvPath = "/home/alx/.cache/pypoetry/virtualenvs"
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    ".git",
+]
