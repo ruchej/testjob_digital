@@ -1,9 +1,9 @@
 from rest_framework.serializers import ModelSerializer
-from core.models import Indicators
+from core.models import Indicator
 
 
-class IndicatorsSerializer(ModelSerializer):
+class IndicatorSerializer(ModelSerializer):
 
     class Meta:
-        model = Indicators
+        model = Indicator
         fields = '__all__'

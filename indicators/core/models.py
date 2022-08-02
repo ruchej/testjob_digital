@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+from django.db.models.query import QuerySet
+
 
 class Indicator(models.Model):
 
@@ -18,3 +20,8 @@ class Indicator(models.Model):
 
     def __str__(self):
         return f'{self.user.username} от {self.date}'
+
+    def get_by_year_month(self, year: int, month: int) -> QuerySet:
+        '''Вернуть значения по данному году и месяцу'''
+        queryset = self.objects.filter(date__year=year, date__month=month)
+        return queryset
