@@ -21,7 +21,7 @@ class Command(BaseCommand):
                 users.append(u)
 
         if not users:
-            raise User.DoesNotExist('Пользователей в системе нет')
+            raise ValueError('Пользователей в системе нет')
 
         start_date = datetime.date(2022, 1, 1)
         end_date = datetime.date(2022, 12, 30)

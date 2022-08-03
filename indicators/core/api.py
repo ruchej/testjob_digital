@@ -22,3 +22,6 @@ class IndicatorView(SafeModelViewSet):
     serializer_class = IndicatorSerializer
     filer_backends = (filters.DjangoFilterBackend,)
     filterset_class = IndicatorFilter
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

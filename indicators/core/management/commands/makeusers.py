@@ -34,7 +34,7 @@ user_2 / user_2
                     username=name,
                     email=f'{name}@example.loc',
                     password=name,
-                    is_active=True
+                    is_staff=True
                 )
 
     def handle(self, *args, **options):

@@ -4,4 +4,5 @@ from core.models import Indicator
 
 @admin.register(Indicator)
 class IndicatorAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('id', '__str__', 'fe', 'si', 'al', 'ca', 's', 'date')
+    list_filter = ('date', 'user')

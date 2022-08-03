@@ -9,6 +9,7 @@ class Indicator(models.Model):
     class Meta:
         verbose_name = "Показатель"
         verbose_name_plural = "Показатели"
+        ordering = ('date', '-id')
 
     fe = models.FloatField(default=0, verbose_name='Железо')
     si = models.FloatField(default=0, verbose_name='Кремний')
