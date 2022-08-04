@@ -9,7 +9,7 @@ class Indicator(models.Model):
     class Meta:
         verbose_name = "Показатель"
         verbose_name_plural = "Показатели"
-        ordering = ('date', '-id')
+        ordering = ('-date', '-id')
 
     fe = models.FloatField(default=0, verbose_name='Железо')
     si = models.FloatField(default=0, verbose_name='Кремний')
@@ -26,3 +26,4 @@ class Indicator(models.Model):
         '''Вернуть значения по данному году и месяцу'''
         queryset = self.objects.filter(date__year=year, date__month=month)
         return queryset
+

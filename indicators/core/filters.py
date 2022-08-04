@@ -9,4 +9,4 @@ class IndicatorFilter(filters.FilterSet):
 
     class Meta:
         model = Indicator
-        fields = ('date',)
+        fields = ('year', 'month')

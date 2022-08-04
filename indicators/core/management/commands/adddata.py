@@ -23,8 +23,8 @@ class Command(BaseCommand):
         if not users:
             raise ValueError('Пользователей в системе нет')
 
-        start_date = datetime.date(2022, 1, 1)
-        end_date = datetime.date(2022, 12, 30)
+        start_date = datetime.datetime(2022, 1, 1)
+        end_date = datetime.datetime.now()
         time_between_dates = end_date - start_date
         days_between_dates = time_between_dates.days
 

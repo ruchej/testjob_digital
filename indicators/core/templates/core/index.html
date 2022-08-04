@@ -17,7 +17,19 @@
 
   </head>
   <body>
-      <div class="container-sm pt-4 pb-2">
+      <div class="container-sm mt-4">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="container-fluid">
+                  {% if user.is_authenticated %}
+                  <p>{{ user.get_username }}</p>
+                  <a class="btn btn-primary" role="button" href="{% url 'logout' %}?next=/">Выйти</a>
+                  {% else %}
+                  <a class="btn btn-primary" role="button" href="{% url 'login' %}?next=/">Войти</a>
+                  {% endif %}
+              </div>
+          </nav>
+      </div">
+      <div class="container-sm mt-4">
           <form>
             <div class="row form-group">
                 <label for="date_id" class="col-sm-1 col-form-label">Дата</label>
@@ -33,7 +45,7 @@
                 </div>
             </div>
           </form>
-          <form id="newData_id" class="pt-4 pb-2">
+          <form id="newData_id" class="mt-4">
               <div class="row g-3">
                   <div class="col">
                       <label for="fe" class="form-label">fe</label>
@@ -60,8 +72,26 @@
                   </div>
               </div>
           </form>
-          <table id="table_id" class="display table">
-              <thead>
+
+          <table id="stattable_id" class="table table-striped table-hover caption-top mt-4">
+              <caption>Статистическая сводка за выбранный период</caption>
+              <thead class="table-dark">
+                  <tr>
+                      <th scope="col">Показатель</th>
+                      <th scope="col">fe</th>
+                      <th scope="col">si</th>
+                      <th scope="col">al</th>
+                      <th scope="col">ca</th>
+                      <th scope="col">s</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+          </table>
+
+          <table id="table_id" class="table table-striped table-hover caption-top mt-4">
+              <caption>Данные за выбранный период</caption>
+              <thead class="table-dark">
                   <tr>
                       <th scope="col">fe</th>
                       <th scope="col">si</th>

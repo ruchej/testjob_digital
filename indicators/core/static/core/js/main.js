@@ -25,7 +25,8 @@ function getData(){
             month: month,
         },
         success: function(data){
-            updateData(data);
+            updateData(data.data);
+            updateStatData(data.stats);
         }
     });
 }
@@ -42,9 +43,12 @@ function updateData(data){
  <td>${data[i].s}</td>
  `
         tableBody.append(row);
-    }};
+    }
+};
+
 let newData_idForm = $("#newData_id");
 newData_id.addEventListener('paste', handlePaste);
+
 function handlePaste (e) {
     e.preventDefault();
     let paste = (e.clipboardData ||
@@ -57,6 +61,7 @@ function handlePaste (e) {
         };
     }
 };
+
 function addNewData(){
     let newData = {};
     $("#newData_id").find("input[type=number]").each(function(){
@@ -65,7 +70,7 @@ function addNewData(){
     let date_id = $("#date_id");
     let dateNow = (new Date()).toLocaleDateString("ru")
     $(date_id).val(dateNow);
-    newData['date'] = dateNow.split(".").reverse().join("-");
+    newData['date'] = (new Date()).toISOString().slice(0,10);
     $.ajax({
         url: "/api/indicators/",
         method: "post",
@@ -79,3 +84,34 @@ function addNewData(){
         }
     });
 };
+
+function updateStatData(data) {
+    let statTable = $("#stattable_id").children("tbody");
+    statTable.children("tr").remove();
+    let row = `
+ <tr role="row">
+ <th scope="row">Мин</th>
+ <td>${data.fe_min}</td>
+ <td>${data.si_min}</td>
+ <td>${data.al_min}</td>
+ <td>${data.ca_min}</td>
+ <td>${data.s_min}</td>
+ <tr role="row">
+ <th scope="row">Макс</th>
+ <td>${data.fe_max}</td>
+ <td>${data.si_max}</td>
+ <td>${data.al_max}</td>
+ <td>${data.ca_max}</td>
+ <td>${data.s_max}</td>
+ <tr role="row">
+ <th scope="row">Сред</th>
+ <td>${data.fe_avg}</td>
+ <td>${data.si_avg}</td>
+ <td>${data.al_avg}</td>
+ <td>${data.ca_avg}</td>
+ <td>${data.s_avg}</td>
+ `
+    statTable.append(row);
+};
+
+
