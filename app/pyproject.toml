@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "testjob_digital"
+version = "0.1.0"
+description = ""
+authors = ["Aleksandr Vinogradov <lvar-8@ya.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^4.0.6"
+djangorestframework = "^3.13.1"
+django-filter = "^22.1"
+django-rest-swagger = "^2.2.0"
+psycopg2-binary = "^2.9.3"
+uvicorn = "^0.18.2"
+gunicorn = "^20.1.0"
+
+[tool.poetry.dev-dependencies]
+ipython = "^8.4.0"
+django-extensions = "^3.2.0"
+django-stubs = "^1.12.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+pythonVersion = "3.10.5"
+pythonPlatform = "Linux"
+venv = "testjob-digital-yVDOslDC-py3.10"
+venvPath = "/home/alx/.cache/pypoetry/virtualenvs"
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    ".git",
+]
