@@ -41,14 +41,17 @@ RUN mkdir $APP_HOME
 
 WORKDIR $APP_HOME
 
-COPY --from=builder /usr/src/app/requirements.txt .
+COPY --chown=app:app . $APP_HOME
+COPY --chown=app:app --from=builder /usr/src/app/requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY ./entrypoint.sh $APP_HOME
+RUN chown app:app $APP_HOME
 
-COPY --chown=app:app . $APP_HOME
+COPY --chown=app:app ./entrypoint.sh $APP_HOME
 
 USER app
+
+RUN mkdir $APP_HOME/static
 
 ENTRYPOINT ["/home/app/web/entrypoint.sh"]
