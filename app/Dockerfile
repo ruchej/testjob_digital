@@ -2,7 +2,7 @@
 # BUILDER #
 ###########
 
-FROM python:3.10.5 as builder
+FROM python:3.10.5-slim as builder
 
 WORKDIR /usr/src/app
 
@@ -24,7 +24,7 @@ RUN poetry export -f requirements.txt --output requirements.txt
 # FINAL #
 #########
 
-FROM python:3.10.5
+FROM python:3.10.5-slim
 
 
 RUN apt-get update \
