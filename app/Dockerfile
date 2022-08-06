@@ -18,9 +18,6 @@ RUN pip install --upgrade pip \
 COPY poetry.lock pyproject.toml /usr/src/app
 
 RUN poetry export -f requirements.txt --output requirements.txt
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
-
-COPY . /usr/src/app
 
 
 #########
@@ -44,15 +41,13 @@ RUN mkdir $APP_HOME
 
 WORKDIR $APP_HOME
 
-COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
 
-RUN pip install --no-cache /wheels/*
+RUN pip install -r requirements.txt
 
 COPY ./entrypoint.sh $APP_HOME
-COPY . $APP_HOME
 
-RUN chown -R app:app $APP_HOME
+COPY --chown=app:app . $APP_HOME
 
 USER app
 
