@@ -1,6 +1,6 @@
 const newInputDataTMPL = `
 <div class="col">
-  <input id="{{id}}" type="number" step="0.01" class="form-control" placeholder="{{plh}}" data-el="plh">
+  <input id="{{id}}" type="number" step="0.01" class="form-control" placeholder="{{plh}}" data-el="{{plh}}">
 </div>
 `
 
@@ -67,6 +67,13 @@ function updateData(data){
     }
 };
 
+// Очистим форму
+function clearForm(){
+    let form = $("#newData_id");
+    $(form).find("[data-type=table-row]").slice(1).remove();
+    $(form).find("input[type=number]").val("");
+
+};
 // Получаем объект формы с полями данных
 let newData_idForm = $("#newData_id");
 // Слушаем событие вставки из буфера обмена
@@ -76,8 +83,8 @@ function handlePaste (e) {
     e.preventDefault();
     let paste = (e.clipboardData ||
         window.clipboardData).getData('text');
-    let newData = paste.split("\n").map((e) => e.split("\t").map((e) => e.trim()));
-    $(e.currentTarget).find("[data-type=table-row]").slice(1).remove()
+    let newData = paste.trim().split("\n").map((e) => e.split("\t").map((e) => e.trim()));
+    clearForm(e.currentTarget);
     let rows = [];
     for (let i = 0; i < newData.length-1; i++){
         let cols = [];
@@ -113,24 +120,28 @@ function addNewData(){
     let rowsInputs = $("#newData_id").find("[data-type=table-row]");
     for (let i = 0; i < rowsInputs.length; i++){
         let inputs = $(rowsInputs[i]).find("input[type=number]");
+        data = {};
         for (let j = 0; j < inputs.length; j++){
             data[$(inputs[j]).attr("data-el")] = +($(inputs[j]).val());
         };
         data['date'] = (new Date()).toISOString().slice(0,10);
         newData[i] = data;
     };
-    $.ajax({
-        url: "/api/indicators/",
-        method: "post",
-        async: false,
-        data: newData,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('X-CSRFToken', $.cookie('csrftoken'));
-        },
-        success: function(){
-            getData();
-        }
-    });
+    for (i = 0; i < newData.length; i++){
+        $.ajax({
+            url: "/api/indicators/",
+            method: "post",
+            async: false,
+            data: newData[i],
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRFToken', $.cookie('csrftoken'));
+            },
+            success: function(){
+                getData();
+            }
+        });
+    };
+    clearForm();
 };
 
 function updateStatData(data) {
