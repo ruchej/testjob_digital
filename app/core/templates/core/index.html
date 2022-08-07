@@ -46,36 +46,39 @@
             </div>
           </form>
           {% if user.is_authenticated %}
-          <form id="newData_id" class="mt-4">
-              <div class="row g-3">
+          <form id="newData_id" class="bg-dark text-white mt-4 p-3 rounded-3">
+          <p>Можно вставить из буфера обмена нексколько строк.</p>
+              <div class="row g-3 mt-1 mb-1" data-type="table-row">
                   <div class="col">
-                      <label for="fe" class="form-label">fe</label>
-                      <input id="fe" type="number" step="0.01" class="form-control" placeholder="fe" aria-label="Ferum">
+                      <label for="fe_1" class="form-label">fe</label>
+                      <input id="fe_1" type="number" step="0.01" class="form-control" placeholder="fe" aria-label="Ferum" data-el="fe">
                   </div>
                   <div class="col">
-                      <label for="si" class="form-label">si</label>
-                      <input id="si" type="number" step="0.01" class="form-control" placeholder="si" aria-label="Silicium">
+                      <label for="si_1" class="form-label">si</label>
+                      <input id="si_1" type="number" step="0.01" class="form-control" placeholder="si" aria-label="Silicium" data-el="si">
                   </div>
                   <div class="col">
-                      <label for="al" class="form-label">al</label>
-                      <input id="al" type="number" step="0.01" class="form-control" placeholder="al" aria-label="Aluminium">
+                      <label for="al_1" class="form-label">al</label>
+                      <input id="al_1" type="number" step="0.01" class="form-control" placeholder="al" aria-label="Aluminium" data-el="al">
                   </div>
                   <div class="col">
-                      <label for="ca" class="form-label">ca</label>
-                      <input id="ca" type="number" step="0.01" class="form-control" placeholder="ca" aria-label="Calcium">
+                      <label for="ca_1" class="form-label">ca</label>
+                      <input id="ca_1" type="number" step="0.01" class="form-control" placeholder="ca" aria-label="Calcium" data-el="ca">
                   </div>
                   <div class="col">
-                      <label for="s" class="form-label">s</label>
-                      <input id="s" type="number" step="0.01" class="form-control" placeholder="s" aria-label="Sulfur">
+                      <label for="s_1" class="form-label">s</label>
+                      <input id="s_1" type="number" step="0.01" class="form-control" placeholder="s" aria-label="Sulfur" data-el="s">
                   </div>
+              </div>
+              <div class="row g-3 mt-1 mb-1">
                   <div class="col-12">
-                      <button type="button" class="btn btn-primary" onclick=addNewData()>+</button>
+                      <button type="button" class="btn btn-primary" onclick=addNewData()>Сохранить</button>
                   </div>
               </div>
           </form>
           {% endif %}
 
-          <table id="stattable_id" class="table table-striped table-hover caption-top mt-4">
+          <table id="stattable_id" class="table table-striped table-hover caption-top mt-4 p-3 rounded-3">
               <caption>Статистическая сводка за выбранный период</caption>
               <thead class="table-dark">
                   <tr>
@@ -91,7 +94,7 @@
                 </tbody>
           </table>
 
-          <table id="table_id" class="table table-striped table-hover caption-top mt-4">
+          <table id="table_id" class="table table-striped table-hover caption-top mt-4 p-3 rounded-3">
               <caption>Данные за выбранный период</caption>
               <thead class="table-dark">
                   <tr>
